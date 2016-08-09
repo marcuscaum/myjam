@@ -1,0 +1,39 @@
+html, body {
+	display: block;
+	height: 100%;
+	background: #140111;
+}
+
+.container {
+	height: 100%;
+}
+
+header h1 {
+	font-size: 72px;
+	text-align: center;
+	color: white;
+	margin-top: 100px;
+}
+
+.logo {
+	color: #ad7;
+}
+
+#song-request {
+	width: 500px;
+	margin:100px auto 0;
+}
+
+#song-request input[type="text"] {
+	width: calc(80% - 20px);
+	padding: 10px;
+	border-bottom-left-radius: 5px;
+	border-top-left-radius: 5px;
+	background: #0b0010;
+	border:none;
+}
+
+#song-request input[type="button"] {
+	width: calc(20% - 20px);
+	padding: 10px;
+}
