@@ -10,7 +10,12 @@ export default class Layout extends React.Component {
   render() {
     return (
       <div>
-        <SongRequest/>
+        <div class="container">
+          <header>
+            <h1> Hello, this is <span class="logo">myjam</span>!</h1>
+          </header>
+          <SongRequest/>
+        </div>
       </div>
     );
   }

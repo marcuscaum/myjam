@@ -4,8 +4,16 @@ export default class SongList extends React.Component {
   
   render() {
     var createItem = (item, index) => {
-      return <li key={ index }>{item.video_url}</li>;
+      return <li key={ index }>{item.title}</li>;
     };
-    return <ul>{ this.props.items.map(createItem) }</ul>;
+    if (this.props.items.length) {
+      return (
+        <div id="song-list">
+          <ul>{ this.props.items.map(createItem) }</ul>
+        </div>
+      )
+    } else {
+      return <div></div>
+    }
   }
 }
