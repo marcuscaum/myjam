@@ -1,14 +1,40 @@
 import React from "react";
+import YouTube from "react-youtube";
 
 export default class Player extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      videoTitle: ''
+    }
+  }
+
   render() {
+    const opts = {
+      width: '1920',
+      height: '1080',
+      allowFullscreen: 1,
+      frameBorder: 0,
+      playerVars: {
+        autoplay: 1
+      }
+    };
+
+    const _this = this;
     return (
-      <div id="player">
-        <iframe frameborder="0" allowfullscreen="1" width="1920" height="1080" 
-          src={ "https://www.youtube.com/embed/" + (this.props.video ? this.props.video.url : '') + "?controls=0&amp;showinfo=0&amp;modestbranding=1&amp;wmode=transparent&amp;enablejsapi=1&amp;autoplay=1&amp;widgetid=1" }>
-        </iframe>
+      <div>
+        <div id="player">
+          <YouTube
+            videoId={this.props.video ? this.props.video.url : ''}
+            opts={opts}
+            onStateChange={(e)=>{ _this.setState({ videoTitle: e.target.getVideoData().title }) }} />
+        </div>
+        <div id="current-song">
+          <p>Jamming right now:</p>
+          <h1>{ this.state.videoTitle } </h1>
+        </div>
       </div>
-    )
+    );
   }
 }

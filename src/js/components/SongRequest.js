@@ -1,6 +1,5 @@
 import React from "react";
 
-import SongList from "./SongList";
 import Player from "./Player";
 
 export default class SongRequest extends React.Component {
@@ -79,14 +78,13 @@ export default class SongRequest extends React.Component {
   render() {
     return (
       <div>
-        <Player video={ this.state.songs[this.state.songs.length - 1] } />
         <div id="song-request">
-          <SongList items={ this.state.songs } />
           <form onSubmit={ this.handleSubmit.bind(this) }>
             <input type="text" placeholder="What is your jam?" onChange={ this.onChange.bind(this) } value={ this.state.videoURL }/>
             <input type="submit" value="xunda" />
           </form>
         </div>
+        <Player video={ this.state.songs[this.state.songs.length - 1] } />
       </div>
     );
   }
