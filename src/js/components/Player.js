@@ -32,7 +32,7 @@ export default class Player extends React.Component {
         </div>
         <div id="current-song">
           <p>Jamming right now:</p>
-          <h1>{ this.state.videoTitle } </h1>
+          <h4>{ this.state.videoTitle } </h4>
         </div>
       </div>
     );

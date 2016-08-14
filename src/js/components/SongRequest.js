@@ -34,23 +34,17 @@ export default class SongRequest extends React.Component {
     e.preventDefault();
     if (this.state.videoURL) {
 
-      var nextSongs = this.state.songs.concat([{
-        video_url: this.videoID()
-      }]);
-
-      this.setState({
-        songs: nextSongs,
-        videoURL: ''
+      this.saveRequest({
+        video: {
+          title: 'xunda',
+          url: this.videoID(),
+          upvote: 0
+        }
       });
 
-      this.saveRequest(
-        {
-          video: {
-            title: 'xunda',
-            url: this.videoID(),
-            upvote: 0
-          }
-        })
+      this.setState({
+        videoURL: ''
+      });
     };
   }
 
@@ -61,16 +55,18 @@ export default class SongRequest extends React.Component {
   }
 
   saveRequest(data) {
+    var _this = this;
+
     $.ajax({
       type: "POST",
       url: "https://api-myjam.herokuapp.com/videos/",
-      data: JSON.stringify(data),
+      data: data,
       dataType: 'json',
       success: function(msg){
-        alert( "Data Saved: " + msg );
+        _this.state.songs.push(msg);
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
-        alert("some error");
+        alert(errorThrown);
       }
     });
   }
@@ -81,7 +77,7 @@ export default class SongRequest extends React.Component {
         <div id="song-request">
           <form onSubmit={ this.handleSubmit.bind(this) }>
             <input type="text" placeholder="What is your jam?" onChange={ this.onChange.bind(this) } value={ this.state.videoURL }/>
-            <input type="submit" value="xunda" />
+            <input type="submit" value="Add song" />
           </form>
         </div>
         <Player video={ this.state.songs[this.state.songs.length - 1] } />
