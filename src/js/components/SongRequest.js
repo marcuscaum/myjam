@@ -19,7 +19,7 @@ export default class SongRequest extends React.Component {
   componentDidMount() {
     var _this = this;
     this.serverRequest = $.get("https://api-myjam.herokuapp.com/videos/")
-      .then(function(result) {    
+      .then(function(result) {
         _this.setState({
           songs: result
         });
@@ -32,6 +32,7 @@ export default class SongRequest extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     if (this.state.videoURL) {
 
       this.saveRequest({
@@ -63,7 +64,7 @@ export default class SongRequest extends React.Component {
       data: data,
       dataType: 'json',
       success: function(msg){
-        _this.state.songs.push(msg);
+        _this.setState({songs: _this.state.songs.concat([msg])});
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         alert(errorThrown);
@@ -76,7 +77,7 @@ export default class SongRequest extends React.Component {
       <div>
         <div id="song-request">
           <form onSubmit={ this.handleSubmit.bind(this) }>
-            <input type="text" placeholder="What is your jam?" onChange={ this.onChange.bind(this) } value={ this.state.videoURL }/>
+            <input type="text" placeholder="What is your jam?" onChange={ this.onChange.bind(this) } value={ this.state.videoURL } />
             <input type="submit" value="Add song" />
           </form>
         </div>
